@@ -113,7 +113,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-10">
-                    <form:form method="POST" modelAttribute="student" action="/home" name="student">
+                    <form:form method="GET" modelAttribute="clientsList" action="/all" name="client">
 		            <form:hidden path="id"/>
 
                 <div class="row">

@@ -22,6 +22,7 @@ public class MainController {
         cl.setFirstName(firstName);
         cl.setSurName(surName);
         cl.setDocument(document);
+        System.out.println("Before save " + cl.getClientId());
         clientRepository.save(cl);
         return "Saved";
     }
@@ -32,9 +33,13 @@ public class MainController {
 
     @GetMapping(path="/")
     public String listing(Model model){
-        Iterable<Client> clientsList = clientRepository.findAll();
-        model.addAttribute("clientsList", clientsList);
-        return "list.jsp";
+        try {
+            Iterable<Client> clientsList = clientRepository.findAll();
+            model.addAttribute("clientsList", clientsList);
+            return "list";
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
 
