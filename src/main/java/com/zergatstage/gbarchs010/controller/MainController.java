@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping(path="/main")
@@ -14,17 +16,24 @@ public class MainController {
     private ClientRepository clientRepository;
 
 
+    @GetMapping("/add")
+    public String addNewClientView(Model model){
+        model.addAttribute("client", new Client());
+        return "add";
+    }
+
     @PostMapping(path="/add")
-    public @ResponseBody String addNewClient(@RequestParam String surName
+    public String addNewClient(@RequestParam String surName
             , @RequestParam String firstName
-            , @RequestParam String document) {
+            , @RequestParam String document, Model model) {
         Client cl = new Client();
         cl.setFirstName(firstName);
         cl.setSurName(surName);
         cl.setDocument(document);
-        System.out.println("Before save " + cl.getClientId());
         clientRepository.save(cl);
-        return "Saved";
+
+        // Redirect to the showClients endpoint after adding the client
+        return "redirect:/main/";
     }
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Client> getAllClients(){
@@ -36,10 +45,12 @@ public class MainController {
         try {
             Iterable<Client> clientsList = clientRepository.findAll();
             model.addAttribute("clientsList", clientsList);
+            System.out.println("/");
             return "list";
         } catch (Exception e){
             throw new RuntimeException(e);
         }
+
     }
 
 
