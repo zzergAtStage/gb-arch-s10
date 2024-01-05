@@ -7,7 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GbArchS010Application {
 
 	public static void main(String[] args) {
+		initClients();
 		SpringApplication.run(GbArchS010Application.class, args);
+	}
+
+	private static void initClients() {
+
 	}
 
 }
