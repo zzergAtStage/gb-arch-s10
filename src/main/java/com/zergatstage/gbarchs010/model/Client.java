@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -63,11 +64,13 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int clientId;
-
+    @NotBlank
     private String document;
+    @NotBlank
 
     private String surName;
 
+    @NotBlank
     private String firstName;
 
     private String patronymic;
