@@ -6,13 +6,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Show Clients</title>
+    <!-- Add Bootstrap CDN link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
 <h2>Client List</h2>
 
-<table border="1">
-    <thead>
+<!-- Use Bootstrap table class -->
+<table class="table table-bordered">
+    <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>First Name</th>
