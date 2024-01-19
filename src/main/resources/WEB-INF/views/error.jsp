@@ -8,5 +8,6 @@
 <body>
 <h1>Error</h1>
 <p>Sorry, an error occurred. Please try again later.</p>
+<p> <a href="http://localhost:8080/swagger-ui/index.html#/"> Try documentation. </a>  </p>
 </body>
 </html>

@@ -1,18 +1,27 @@
 package com.zergatstage.gbarchs010.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Date;
 
 
 @Entity
+@Table(name = "client")
 public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int clientId;
+    @NotBlank
+    private String document;
+    @NotBlank
+
+    private String surName;
+    @NotBlank
+    private String firstName;
+    private String patronymic;
+    private Date birthDate;
+
     public int getClientId() {
         return clientId;
     }
@@ -60,21 +69,5 @@ public class Client {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int clientId;
-    @NotBlank
-    private String document;
-    @NotBlank
-
-    private String surName;
-
-    @NotBlank
-    private String firstName;
-
-    private String patronymic;
-
-    private Date birthDate;
 
 }

@@ -1,15 +1,14 @@
 package com.zergatstage.gbarchs010.controller;
 
 import com.zergatstage.gbarchs010.model.Client;
+import com.zergatstage.gbarchs010.repository.ClientJPARepository;
 import com.zergatstage.gbarchs010.repository.ClientRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.NonNull;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/client")
 public class MainRestClientController {
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientJPARepository clientRepository;
 
 
     @GetMapping(path="/all")
@@ -52,7 +51,7 @@ public class MainRestClientController {
     @ResponseStatus(HttpStatus.OK)
     public Client updateClient(@PathVariable("id") final String id,
                                @RequestBody final Client client){
-        return client;
+        return clientRepository.save(client);
     }
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -62,7 +61,7 @@ public class MainRestClientController {
     }
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client postClient(@NotNull @RequestBody final Client client){
+    public Client postClient(@RequestBody final Client client){
         return client;
     }
     @RequestMapping(method = RequestMethod.HEAD, value = "/")
